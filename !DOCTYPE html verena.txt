@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<HTML lang="es">
+<meta charset="UTF-8">
+<title>Zeta chat</title>
+<script
+src=https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+
+<style>
+body{
+front-family: Arial;
+background:#0f172a;
+color:white;
+text-align:center;
+}
+
+#chat{
+width:90%;
+max-width:500px;
+magin:auto;
+background:#1e293b;
+padding:20px;
+border-radius:10px;
+border-radius:5px;
+}
+
+#messages{
+height:300px;
+overflow:auto;
+background:#020617;
+padding:10px;
+margin-bottom:10px;
+border-radius:5px;
+width:70%;
+}
+
+input{
+padding:10px;
+border:none;
+border-radius:5px
+width:70%;
+}
+</style>
+</head>
+
+<body>
+
+<h1> ZETA CHAT</h1>
+
+<div id="chat">
+
+<div id="messages"></div>
+
+<input id="name" placeholder="Tu Nombre">
+
+<br><br>
+
+<input id="messages" placeholder="Escribe un Mensaje">
+
+<buttom onclick="send()">enviar</buttom>
+
+</div>
+
+<script>
+
+var gun =
+Gun(['https://gun-manhattan.herokuapp.com/gun']);
+var chat = gun.get("Zeta-Chat");
+
+
+Chat.map().on(function(data){
+if(data){
+var msg = document.createElement("p");
+msg.textContent = data.name + ": " + data.message;
+document.getElementById("messages").appendChild(msg);
+}
+});
+
+Function send(){
+var name = document.getElementById("name").value;
+var message = ddocument.getElemtById("message").value;
+
+chat.set({
+name:name,
+message:message
+});
+
+</script>
+
+</body>
+</html>
+
+
